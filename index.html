@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Unity Express shared savings group tracker">
+  <title>Unity Express — Samity Fund</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar"><a class="brand" href="#"><span class="brand-mark">U</span><span>Unity <b>Express</b><small>SAMITY FUND</small></span></a><span id="connection" class="connection">Connecting…</span></header>
+    <section id="authView" class="auth-card">
+      <p class="eyebrow">UNITY EXPRESS SAVINGS GROUP</p><h1>একসাথে সঞ্চয়, একসাথে এগিয়ে যাওয়া</h1><p class="intro">আপনার অ্যাকাউন্টে লগ ইন করুন, অথবা প্রথমবার হলে অ্যাকাউন্ট তৈরি করুন।</p>
+      <form id="authForm"><label>Email<input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></label><label>Password<input id="password" type="password" autocomplete="current-password" minlength="6" placeholder="কমপক্ষে ৬ অক্ষর" required></label><div class="auth-actions"><button class="button primary" type="submit">লগ ইন</button><button class="button secondary" type="button" id="signupButton">নতুন অ্যাকাউন্ট</button></div><p id="authMessage" class="message" role="status"></p></form>
+      <p class="notice">নতুন account তৈরি করলেই group data দেখা যাবে না। নিরাপত্তার জন্য group admin-কে আপনার account অনুমোদন করতে হবে।</p>
+    </section>
+    <section id="pendingView" class="auth-card hidden"><p class="eyebrow">ACCOUNT APPROVAL</p><h1>অনুমোদনের অপেক্ষায়</h1><p class="intro">আপনার account তৈরি হয়েছে, কিন্তু Unity Express-এর group ledger দেখার অনুমতি এখনও দেওয়া হয়নি। Group admin-কে আপনার email জানান।</p><button class="button secondary" id="pendingSignout">লগ আউট</button></section>
+    <section id="dashboard" class="hidden">
+      <div class="welcome"><div><p class="eyebrow">SAVINGS GROUP</p><h1>Fund overview</h1><p>মাসিক জমা ও খরচের হিসাব।</p></div><div class="user-actions"><span id="userEmail"></span><button class="button secondary small" id="signoutButton">লগ আউট</button></div></div>
+      <div class="summary-grid"><article class="summary"><span>মোট জমা</span><strong id="totalDeposits">$0</strong></article><article class="summary"><span>মোট খরচ</span><strong id="totalExpenses">$0</strong></article><article class="summary"><span>বর্তমান ব্যালেন্স</span><strong id="balance">$0</strong></article></div>
+      <div class="columns"><section class="panel"><div class="panel-heading"><div><h2>সদস্যদের জমা</h2><p>প্রতি মাসে নির্ধারিত জমা $200</p></div><button class="button primary" id="showDeposit">＋ জমা যোগ</button></div><div class="table-scroll"><table><thead><tr><th>সদস্য</th><th>এই মাসে</th><th>মোট জমা</th><th>অবস্থা</th></tr></thead><tbody id="memberRows"></tbody></table></div></section>
+      <section class="panel"><div class="panel-heading"><div><h2>খরচের হিসাব</h2><p>গ্রুপের তহবিল থেকে খরচ</p></div><button class="button secondary" id="showExpense">＋ খরচ যোগ</button></div><div id="expenseRows" class="activity-list"></div></section></div>
+    </section>
+    <footer>Unity Express · Savings together, growing together.</footer>
+  </main>
+  <dialog id="depositDialog"><form id="depositForm"><button class="close" type="button" data-close>×</button><p class="eyebrow">FUND CONTRIBUTION</p><h2>জমা যোগ করুন</h2><label>সদস্য<select id="depositMember" required></select></label><label>পরিমাণ (USD)<input id="depositAmount" type="number" min="0.01" step="0.01" value="200" required></label><label>তারিখ<input id="depositDate" type="date" required></label><label>নোট (ঐচ্ছিক)<input id="depositNote" maxlength="120"></label><p class="message" id="depositMessage"></p><button class="button primary full" type="submit">সংরক্ষণ</button></form></dialog>
+  <dialog id="expenseDialog"><form id="expenseForm"><button class="close" type="button" data-close>×</button><p class="eyebrow">FUND ACTIVITY</p><h2>খরচ যোগ করুন</h2><label>বিবরণ<input id="expenseDescription" maxlength="120" required placeholder="কী কাজে খরচ হয়েছে?"></label><label>পরিমাণ (USD)<input id="expenseAmount" type="number" min="0.01" step="0.01" required></label><label>তারিখ<input id="expenseDate" type="date" required></label><p class="message" id="expenseMessage"></p><button class="button primary full" type="submit">সংরক্ষণ</button></form></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
